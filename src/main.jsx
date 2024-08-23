@@ -9,6 +9,7 @@ import Navbar from "./components/Navbar/Navbar.jsx";
 import Profile from "./components/Profile/Profile.jsx";
 import { Provider } from "react-redux";
 import { store } from "./store/store.js";
+import SingleItem from "./components/SingleItem/SingleItem.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -20,6 +21,7 @@ createRoot(document.getElementById("root")).render(
           <Route path="/products" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/products/:id" element={<SingleItem/>}/>
         </Routes>
       </BrowserRouter>
     </Provider>

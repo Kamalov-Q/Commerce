@@ -2,7 +2,8 @@
 import { useEffect, useState } from "react";
 import "./Product.css";
 import { useDispatch } from "react-redux";
-import {addToCart} from '../../store/productSlice'
+import { addToCart } from "../../store/productSlice";
+import { Link } from "react-router-dom";
 const Product = () => {
   const BASEURL = `https://fakestoreapi.com/`;
   const [products, setProducts] = useState([]);
@@ -21,18 +22,16 @@ const Product = () => {
       });
   };
 
-
   useEffect(() => {
     getProducts();
   }, []);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const addToCartFnc = (e, product) => {
     e?.preventDefault();
     dispatch(addToCart(product));
-  }
-
+  };
 
   return (
     <div className="Product">
@@ -40,17 +39,23 @@ const Product = () => {
         <div className="Product__container">
           {products?.map((prod, idx) => (
             <div key={idx} className="Product__card">
-              <img
-                src={prod?.image}
-                alt={prod.category}
-              />
+              <Link to={`/products/${prod.id}`}>
+                <img src={prod?.image} alt={prod.category} />
+              </Link>
               <div className="Product__card__title">
                 {prod?.title.length > 20
                   ? `${prod?.title.slice(0, 20)}...`
                   : prod?.title}
               </div>
-              <div className="Product__card__price">${String(prod?.price).slice(0, 5)}</div>
-              <button className="Product__card__button" onClick={(e) => addToCartFnc(e, prod)}>Add</button>
+              <div className="Product__card__price">
+                ${String(prod?.price).slice(0, 5)}
+              </div>
+              <button
+                className="Product__card__button"
+                onClick={(e) => addToCartFnc(e, prod)}
+              >
+                Add
+              </button>
             </div>
           ))}
         </div>
