@@ -1,0 +1,42 @@
+.Navbar {
+  height: auto;
+  padding-block: 20px;
+  background-color: rgb(120, 109, 109);
+  color: black;
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+}
+.Navbar nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.Navbar .Navbar__brand a {
+  text-decoration: none;
+  color: black;
+  font-size: 25px;
+}
+.Navbar .Navbar__items {
+  display: flex;
+  gap: 10px;
+}
+.Navbar .Navbar__items li {
+  list-style: none;
+  margin-inline: 20px;
+  position: relative;
+}
+.Navbar .Navbar__items li a {
+  text-decoration: none;
+  font-size: 20px;
+  color: black;
+}
+.Navbar .Navbar__items li a .cart {
+  position: absolute;
+  padding: 1px 4px;
+  border-radius: 23px;
+  background-color: black;
+  bottom: 10px;
+  left: 15px;
+  color: white;
+}

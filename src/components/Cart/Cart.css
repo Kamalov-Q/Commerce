@@ -1,0 +1,96 @@
+.Cart {
+  padding-top: 70px;
+  display: flex;
+  justify-content: center;
+  min-height: 100dvh;
+}
+.Cart__container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding-top: 70px;
+  flex: 4;
+}
+.Cart .Cart__card {
+  margin: 30px;
+  width: 35%;
+  text-align: center;
+  box-shadow: 3px 3px 5px 1px rgb(54, 51, 51);
+  padding: 10px;
+  transition: all 1s;
+}
+.Cart .Cart__card:hover {
+  cursor: pointer;
+  transform: scale(1.07);
+}
+.Cart .Cart__card img {
+  width: 100%;
+  object-fit: fill;
+  height: 250px;
+}
+.Cart .Cart__card__title {
+  font-size: 25px;
+  font-weight: 550;
+}
+.Cart .Cart__card__price {
+  font-size: 23px;
+  padding: 10px;
+  font-weight: 500;
+}
+.Cart .Cart__card__button {
+  padding: 15px;
+  font-size: 20px;
+  width: 100%;
+  color: white;
+  background-color: rgb(39, 150, 39);
+  border: none;
+  border-radius: 10px;
+  transition: all 0.6s;
+}
+.Cart .Cart__card__button:hover {
+  cursor: pointer;
+  transform: scale(1.03);
+}
+
+/*   */
+.Cart__total {
+  display: flex;
+  flex: 2;
+  position: sticky;
+  flex-direction: column;
+  box-shadow: 2px 2px 2px 5px black;
+  padding: 30px;
+  top: 0;
+  right: 0;
+}
+.Cart__total .Cart__total_title {
+  display: flex;
+  flex-direction: column;
+  font-size: 40px;
+  font-weight: 500;
+  text-align: center;
+}
+.Cart__total .Cart__total__menu {
+  display: flex;
+  flex-direction: row;
+}
+.clearBtn {
+  padding: 15px;
+  margin: 20px;
+  font-size: 20px;
+  width: 100%;
+  color: white;
+  background-color: rgb(155, 21, 21);
+  border: none;
+  border-radius: 10px;
+}
+.clearBtn:hover {
+  cursor: pointer;
+  transform: scale(1.03);
+}
+.idle img{
+    width: 100%;
+    object-fit: fill;
+    height: 90%;
+}
