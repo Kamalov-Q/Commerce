@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import "./Product.css";
-import { useDispatch } from "react-redux";
-import { addToCart } from "../../store/productSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, chooseProd, removeFromCart } from "../../store/productSlice";
 import { Link } from "react-router-dom";
 const Product = () => {
   const BASEURL = `https://fakestoreapi.com/`;
@@ -27,11 +27,21 @@ const Product = () => {
   }, []);
 
   const dispatch = useDispatch();
+  const length = useSelector((state) => state.product.length);
 
   const addToCartFnc = (e, product) => {
     e?.preventDefault();
     dispatch(addToCart(product));
   };
+  const removeCart = (e, productId) => {
+    e?.preventDefault();
+    dispatch(removeFromCart(productId));
+  };
+
+  const choose = (e, productId) => {
+    e?.preventDefault();
+    dispatch(chooseProd(productId));
+  }
 
   return (
     <div className="Product">
@@ -50,12 +60,36 @@ const Product = () => {
               <div className="Product__card__price">
                 ${String(prod?.price).slice(0, 5)}
               </div>
-              <button
-                className="Product__card__button"
-                onClick={(e) => addToCartFnc(e, prod)}
-              >
-                Add
-              </button>
+              {length > 0 ? (
+                <div className="extraAdd">
+                  <button
+                    className="extraAdd__btn"
+                    onClick={(e) => {
+                      addToCartFnc(e, prod)
+                      choose(e, prod?.id)
+                    }}
+                  >
+                    +
+                  </button>
+                  <input type="number" disabled value={length} />
+                  <button
+                    className="extraAdd__btn"
+                    onClick={(e) => removeCart(e, prod?.id)}
+                  >
+                    -
+                  </button>
+                </div>
+              ) : (
+                <button
+                  className="Product__card__button"
+                  onClick={(e) => {
+                    addToCartFnc(e, prod)
+                    choose(e, prod?.id);
+                  }}
+                >
+                  Add
+                </button>
+              )}
             </div>
           ))}
         </div>

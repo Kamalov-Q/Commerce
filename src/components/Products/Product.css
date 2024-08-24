@@ -46,3 +46,22 @@
     cursor: pointer;
     transform: scale(1.03);
 }
+.extraAdd {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.extraAdd .extraAdd__btn {
+    font-size: 20px;
+    padding: 10px 15px;
+    color: white;
+    background-color: rgb(39, 150, 39);
+    border: none;
+}
+.extraAdd input {
+    padding: 12px 20px;
+    width: 30%;
+    border: none;
+    text-align: center;
+    border: 1px solid rgb(100, 95, 95);
+}
