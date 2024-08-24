@@ -1,0 +1,20 @@
+.Filter {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.filteringButtons {
+    font-size: 20px;
+    padding: 10px 15px;
+    color: white;
+    background-color: rgb(4, 7, 4);
+    border: none;
+    margin: 10px;
+    transition: all 1s;
+}
+.filteringButtons:hover {
+    background-color: rgb(51, 56, 51);
+    cursor: pointer;
+    transform: scale(1.04);
+}

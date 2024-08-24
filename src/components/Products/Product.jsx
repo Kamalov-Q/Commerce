@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import "./Product.css";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, chooseProd, removeFromCart } from "../../store/productSlice";
+import { addToCart, removeFromCart } from "../../store/productSlice";
 import { Link } from "react-router-dom";
 const Product = () => {
   const BASEURL = `https://fakestoreapi.com/`;
@@ -14,7 +14,6 @@ const Product = () => {
       .then((resp) => resp.json())
       .then((data) => {
         setProducts(data);
-        console.log("data", data);
       })
       .catch((err) => {
         console.error(err);
@@ -38,11 +37,6 @@ const Product = () => {
     dispatch(removeFromCart(productId));
   };
 
-  const choose = (e, productId) => {
-    e?.preventDefault();
-    dispatch(chooseProd(productId));
-  }
-
   return (
     <div className="Product">
       {products ? (
@@ -65,8 +59,7 @@ const Product = () => {
                   <button
                     className="extraAdd__btn"
                     onClick={(e) => {
-                      addToCartFnc(e, prod)
-                      choose(e, prod?.id)
+                      addToCartFnc(e, prod);
                     }}
                   >
                     +
@@ -83,8 +76,7 @@ const Product = () => {
                 <button
                   className="Product__card__button"
                   onClick={(e) => {
-                    addToCartFnc(e, prod)
-                    choose(e, prod?.id);
+                    addToCartFnc(e, prod);
                   }}
                 >
                   Add

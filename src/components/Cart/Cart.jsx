@@ -4,8 +4,6 @@ import emptyCart from '../../assets/cart.webp'
 import { clearCart, removeFromCart } from "../../store/productSlice";
 const Cart = () => {
   const items = useSelector((state) => state.product.product);
-  console.log(items);
-
   const dispatch = useDispatch();
 
   const removeCart = (e, productId) => {
