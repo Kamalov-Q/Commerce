@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import "./Cart.css";
-import emptyCart from '../../assets/cart.webp'
+import emptyCart from "../../assets/cart.webp";
 import { clearCart, removeFromCart } from "../../store/productSlice";
 const Cart = () => {
   const items = useSelector((state) => state.product.product);
@@ -78,7 +78,9 @@ const Cart = () => {
           </div>
         </>
       ) : (
-        <div className="idle"><img src={emptyCart} /></div>
+        <div className="idle">
+          <img src={emptyCart} />
+        </div>
       )}
     </div>
   );
