@@ -10,10 +10,14 @@ import Profile from "./components/Profile/Profile.jsx";
 import { Provider } from "react-redux";
 import { store } from "./store/store.js";
 import SingleItem from "./components/SingleItem/SingleItem.jsx";
+// import Products from "./components/rtk/products.jsx";
+// import { ApiProvider } from "@reduxjs/toolkit/query/react";
+// import { productApi } from "./store/apiSlice.js";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider store={store}>
+      {/* <ApiProvider api={productApi}> */}
       <BrowserRouter>
         <Navbar />
         <Routes>
@@ -21,9 +25,12 @@ createRoot(document.getElementById("root")).render(
           <Route path="/products" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/products/:id" element={<SingleItem/>}/>
+          <Route path="/products/:id" element={<SingleItem />} />
+          {/* <Route path="/rtk" element={<Products />} /> */}
         </Routes>
+        {/* <Products /> */}
       </BrowserRouter>
+      {/* </ApiProvider> */}
     </Provider>
   </StrictMode>
 );

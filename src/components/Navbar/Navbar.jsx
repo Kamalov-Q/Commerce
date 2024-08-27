@@ -28,7 +28,7 @@ const Navbar = () => {
           <li className="Navbar__item">
             <Link className="Navbar__link" to="/cart">
               <i className="fa-solid fa-cart-shopping" aria-hidden="true"></i>
-              <span className="Navbar__cart-count">{cartItemCount}</span>
+              <span className="cart">{cartItemCount}</span>
             </Link>
           </li>
           <li className="Navbar__item">
