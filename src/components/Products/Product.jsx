@@ -2,10 +2,11 @@
 import { useEffect, useState } from "react";
 import "./Product.css";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, removeFromCart } from "../../store/productSlice";
+import { addToCart, removeFromCart } from "../../store/productsSlice";
 import { Link } from "react-router-dom";
 const Product = () => {
   const BASEURL = `https://fakestoreapi.com/`;
+  const product = useSelector((state) => state.product.product)
   const [products, setProducts] = useState([]);
   const getProducts = () => {
     fetch(`${BASEURL}products`, {
@@ -14,6 +15,7 @@ const Product = () => {
       .then((resp) => resp.json())
       .then((data) => {
         setProducts(data);
+        console.log("PRODUCTS", data);
       })
       .catch((err) => {
         console.error(err);
@@ -23,14 +25,14 @@ const Product = () => {
 
   useEffect(() => {
     getProducts();
-  }, []);
+    console.log(product, "PRODUCTS");
+  }, [product]);
 
   const dispatch = useDispatch();
   const length = useSelector((state) => state.product.length);
 
-  const addToCartFnc = (e, product) => {
-    e?.preventDefault();
-    dispatch(addToCart(product));
+  const addToCartFnc = (productId) => {
+    dispatch(addToCart({ quantity: 1, productId }));
   };
   const removeCart = (e, productId) => {
     e?.preventDefault();
@@ -75,8 +77,8 @@ const Product = () => {
               ) : (
                 <button
                   className="Product__card__button"
-                  onClick={(e) => {
-                    addToCartFnc(e, prod);
+                  onClick={() => {
+                    addToCartFnc(prod?.id);
                   }}
                 >
                   Add

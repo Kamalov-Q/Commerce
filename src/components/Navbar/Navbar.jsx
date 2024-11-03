@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const { name } = useSelector((state) => state.profile);
-  const cartItemCount = useSelector((state) => state.product.length);
 
   return (
     <div className="Navbar">
@@ -28,7 +27,7 @@ const Navbar = () => {
           <li className="Navbar__item">
             <Link className="Navbar__link" to="/cart">
               <i className="fa-solid fa-cart-shopping" aria-hidden="true"></i>
-              <span className="cart">{cartItemCount}</span>
+              <span className="cart"></span>
             </Link>
           </li>
           <li className="Navbar__item">

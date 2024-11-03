@@ -20,11 +20,16 @@ const SingleItem = () => {
   useEffect(() => {
     getSingle();
   }, [id]);
+
+  console.log("SINGLE QUANTITy", single);
+
+
   return (
     <div className="Single">
       <img src={single?.image} width={400} height={400} alt={single.title} />
       <div>{single?.category}</div>
       <div>{single.title}</div>
+      <div className="">Count : {single?.quantity}</div>
       <div>$ {single.price}</div>
       <div>{single?.description}</div>
     </div>
