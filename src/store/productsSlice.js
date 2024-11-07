@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  product: [],
+  items: [],
 };
 
 const productsSlice = createSlice({
@@ -9,24 +9,28 @@ const productsSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      const { quantity, productId } = action.payload;
-      const foundIndex = state.product.findIndex(
-        (item) => item.productId === productId
-      );
-      if (foundIndex >= 0) {
-        state.product[foundIndex].quantity += quantity;
+      // const { product } = action.payload;
+      // const foundIndex = Array.from(state.items).findIndex(
+      //   (item) => item?.id === product.id
+      // );
+      // if (foundIndex === -1) {
+      //   state.items = [...state.items, { ...product, quantity: 1 }];
+      //   // state.items.push({ ...product, quantity: 1 });
+      // } else {
+      //   state.items[foundIndex].quantity += 1;
+      // }
+
+      const { product } = action.payload;
+
+      const foundItems = Array.from(state.items).find((item) => {
+        return item.id === product.id;
+      });
+
+      if (foundItems) {
+        foundItems.quantity += 1;
       } else {
-        state.product.push({ quantity, productId });
+        state.items = [...state.items, { ...product, quantity: 1 }];
       }
-    },
-    removeFromCart: (state, action) => {
-      state.product = state.product.filter(
-        (item) => item?.id !== action.payload
-      );
-      state.length -= 1;
-    },
-    clearCart: (state) => {
-      state.product = initialState.product;
     },
   },
 });

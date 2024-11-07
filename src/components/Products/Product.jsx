@@ -6,7 +6,8 @@ import { addToCart, removeFromCart } from "../../store/productsSlice";
 import { Link } from "react-router-dom";
 const Product = () => {
   const BASEURL = `https://fakestoreapi.com/`;
-  const product = useSelector((state) => state.product.product)
+  const product = useSelector((state) => state.product.items)
+
   const [products, setProducts] = useState([]);
   const getProducts = () => {
     fetch(`${BASEURL}products`, {
@@ -15,7 +16,6 @@ const Product = () => {
       .then((resp) => resp.json())
       .then((data) => {
         setProducts(data);
-        console.log("PRODUCTS", data);
       })
       .catch((err) => {
         console.error(err);
@@ -29,15 +29,19 @@ const Product = () => {
   }, [product]);
 
   const dispatch = useDispatch();
-  const length = useSelector((state) => state.product.length);
 
-  const addToCartFnc = (productId) => {
-    dispatch(addToCart({ quantity: 1, productId }));
-  };
-  const removeCart = (e, productId) => {
-    e?.preventDefault();
-    dispatch(removeFromCart(productId));
-  };
+  const addToCartFn = (product) => {
+    dispatch(addToCart({product}));
+  }
+
+
+  // const addToCartFnc = (productId) => {
+  //   dispatch(addToCart({ quantity: 1, productId }));
+  // };
+  // const removeCart = (e, productId) => {
+  //   e?.preventDefault();
+  //   dispatch(removeFromCart(productId));
+  // };
 
   return (
     <div className="Product">
@@ -60,16 +64,12 @@ const Product = () => {
                 <div className="extraAdd">
                   <button
                     className="extraAdd__btn"
-                    onClick={(e) => {
-                      addToCartFnc(e, prod);
-                    }}
                   >
                     +
                   </button>
                   <input type="number" disabled value={length} />
                   <button
                     className="extraAdd__btn"
-                    onClick={(e) => removeCart(e, prod?.id)}
                   >
                     -
                   </button>
@@ -78,7 +78,7 @@ const Product = () => {
                 <button
                   className="Product__card__button"
                   onClick={() => {
-                    addToCartFnc(prod?.id);
+                    addToCartFn(prod);
                   }}
                 >
                   Add
