@@ -31,17 +31,13 @@ const Product = () => {
   const dispatch = useDispatch();
 
   const addToCartFn = (product) => {
-    dispatch(addToCart({product}));
+    dispatch(addToCart({ product }));
   }
 
+  const removeFromCartFn = (productId) => {
+    dispatch(removeFromCart({ productId }))
+  }
 
-  // const addToCartFnc = (productId) => {
-  //   dispatch(addToCart({ quantity: 1, productId }));
-  // };
-  // const removeCart = (e, productId) => {
-  //   e?.preventDefault();
-  //   dispatch(removeFromCart(productId));
-  // };
 
   return (
     <div className="Product">
@@ -60,30 +56,25 @@ const Product = () => {
               <div className="Product__card__price">
                 ${String(prod?.price).slice(0, 5)}
               </div>
-              {length > 0 ? (
-                <div className="extraAdd">
-                  <button
-                    className="extraAdd__btn"
-                  >
-                    +
-                  </button>
-                  <input type="number" disabled value={length} />
-                  <button
-                    className="extraAdd__btn"
-                  >
-                    -
-                  </button>
-                </div>
-              ) : (
+              <div className="extraAdd">
                 <button
-                  className="Product__card__button"
+                  className="extraAdd__btn"
                   onClick={() => {
                     addToCartFn(prod);
                   }}
                 >
-                  Add
+                  +
                 </button>
-              )}
+                <input type="number" disabled value={prod?.quantity ? prod?.quantity : 0} />
+                <button
+                  className="extraAdd__btn"
+                  onClick={() => {
+                    removeFromCartFn(prod?.id);
+                  }}
+                >
+                  -
+                </button>
+              </div>
             </div>
           ))}
         </div>
